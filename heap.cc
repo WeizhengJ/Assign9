@@ -1,13 +1,51 @@
 #include "heap.h"
 
+
+
+/* 	Weizheng Jiang
+	z1861817
+	csci340 section2
+	
+	I certify that this is my own work and where appropriate an extension 
+	of the starter code provided for the assignment.
+*/
+
+
+
+
+//takes the input from a file and stores it in a vector
 template <typename T>
 void get_list(vector<T> &v, const char *path) {
-  // Your implementation goes here!!!
+	//v: a vector container for T data type,
+	//path: const char pointer to the path of the file to read from
+	v.clear();
+	T data;
+	ifstream inFile;
+	inFile.open(path);
+	//if the file cannot open, print out the error message and exit
+	if(inFile.fail())
+		{
+		cout << "FAILURE TO OPEN" << path;
+		exit(1);
+		}
+	//input the data from the input file
+	inFile >> data;
+	while(inFile)
+		{
+			//use the push_back method to store the data in the vector
+		v.push_back(data);
+		inFile >> data;
+		}
+	//close the input file
+	inFile.close();
 }
 
+//makes and sorts a heap
 template <typename T, typename P>
 void construct_heap(vector<T> &v, P pred) {
-  // Your implementation goes here!!!
+
+	make_heap(v.begin(), v.end(), pred);
+	sort_heap(v.begin(), v.end(), pred);
 }
 
 int main() {

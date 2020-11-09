@@ -48,4 +48,46 @@ class print_list {
   void operator()(const T&);
 };
 
+template <typename T>
+print_list<T>::print_list(const unsigned& s, const unsigned& w, const unsigned& l, const unsigned& c)
+{
+	//s: const unsigned reference to store size
+	//w: const unsigned reference to store width
+	//l: const unsigned reference to store length
+	//c: const unsigned reference to store count starting at 0
+	sz = s;
+	wid = w;
+	len = l;
+	cnt = c;
+}
+
+//print x from a heap in stdout
+template <class T>
+void print_list<T>::operator()(const T& x)
+{
+	cout.width(wid); cout.precision(2);
+	cout << fixed << showpoint;
+
+	if(cnt <= sz)
+		{
+		if(cnt%len == 0)
+			cout << endl;
+
+		cout << x << " ";
+		cnt++;
+		}
+
+	if(cnt == sz)
+		cout << endl << endl;
+}
+
+
+
+
+
+
+
+
+
+
 #endif  // HEAP_H_
